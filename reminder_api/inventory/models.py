@@ -3,25 +3,23 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-class BaseModel(models.Model):
 
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return str(self.__dict__)
-
-class Host(BaseModel):
+class Host(models.Model):
     name = models.CharField(max_length=20)
 
-class Group(BaseModel):
+    def __str__(self):
+        return "name: %s" % self.name
+
+class Group(models.Model):
     name = models.CharField(max_length=20)
     hosts = models.ManyToManyField(Host, blank=True)
 
-class Inventory(BaseModel):
+    def __str__(self):
+        return "name: %s" % self.name
+
+class Inventory(models.Model):
     name = models.CharField(max_length=20)
     groups = models.ManyToManyField(Group, blank=True)
 
-class Project(BaseModel):
-    name = models.CharField(max_length=20)
-    inventory = models.ManyToManyField(Inventory, blank=True)
+    def __str__(self):
+        return "name: %s" % self.name

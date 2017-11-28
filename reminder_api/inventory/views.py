@@ -1,15 +1,10 @@
 from django.shortcuts import render
 
-from inventory.models import Project, Inventory, Group, Host
-from inventory.serializers import ProjectSerializer, InventorySerializer, GroupSerializer, HostSerializer
+from inventory.models import Inventory, Group, Host
+from inventory.serializers import InventorySerializer, GroupSerializer, HostSerializer
 from rest_framework.views import APIView
 from rest_framework.renderers import JSONRenderer
 from rest_framework import generics
-
-
-class ProjectList(generics.ListCreateAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
 
 
 class InventoryList(generics.ListCreateAPIView):

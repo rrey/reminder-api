@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'inventory.apps.InventoryConfig',
+    'reminder.apps.ReminderConfig',
+    'project.apps.ProjectConfig',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

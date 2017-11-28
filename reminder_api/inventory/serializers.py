@@ -1,4 +1,4 @@
-from inventory.models import Project, Group, Host, Inventory
+from inventory.models import Group, Host, Inventory
 from rest_framework import serializers
 
 
@@ -25,21 +25,3 @@ class InventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
         fields = ('name', 'groups')
-
-
-class ProjectSerializer(serializers.ModelSerializer):
-
-    inventory = InventorySerializer(many=True)
-
-    class Meta:
-        model = Project
-        fields = ('name', 'inventory')
-
-    def create(self, validated_data):
-        inventory = validated_data.pop('inventory')
-        project = Project.objects.create(**validated_data)
-        project.save()
-        if inventory:
-            for item in inventory:
-                project.inventory.create(**item)
-        return project
