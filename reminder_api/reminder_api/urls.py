@@ -17,9 +17,18 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from project import views as p_views
+from reminder import views as r_views
+
 urlpatterns = [
-    url(r'^projects/', include('project.urls')),
-    url(r'^reminder/', include('reminder.urls')),
+    url(r'^projects/$', p_views.ProjectList.as_view(), name='projects'),
+    url(r'^projects/(?P<name>\w+)/$', p_views.ProjectDetail.as_view()),
+    url(r'^environments/$', p_views.EnvironmentList.as_view(), name='environments'),
+    url(r'^environments/(?P<name>\w+)/$', p_views.EnvironmentDetail.as_view()),
+
+    url(r'^reminders/(?P<pk>[0-9]+)/$', r_views.ReminderDetail.as_view()),
+    url(r'^stacks/$', r_views.StackList.as_view()),
+    url(r'^stacks/(?P<pk>[0-9]+)/$', r_views.StackDetail.as_view()),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

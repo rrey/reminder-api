@@ -3,48 +3,37 @@ from rest_framework import generics
 
 from reminder.models import Reminder, Stack, StackSection, Host, Url
 from reminder.serializers import ReminderSerializer, StackSerializer, StackSectionSerializer, HostSerializer, UrlSerializer
+from reminder.serializers import StackDetailSerializer, StackSectionDetailSerializer
 
 
 class UrlList(generics.ListCreateAPIView):
+    queryset = Url.objects.all()
     serializer_class = UrlSerializer
-
-    def get_queryset(self):
-        stacksection_name = self.kwargs['stacksection_name']
-        return Url.objects.filter(stacksection__name=stacksection_name)
 
 
 class HostList(generics.ListCreateAPIView):
+    queryset = Host.objects.all()
     serializer_class = HostSerializer
-
-    def get_queryset(self):
-        stacksection_name = self.kwargs['stacksection_name']
-        return Host.objects.filter(stacksection__name=stacksection_name)
 
 
 class StackSectionList(generics.ListCreateAPIView):
+    queryset = StackSection.objects.all()
     serializer_class = StackSectionSerializer
 
-    def get_queryset(self):
-        stack_name = self.kwargs['stack_name']
-        return StackSection.objects.filter(stack__name=stack_name)
+class StackSectionDetail(generics.ListCreateAPIView):
+    queryset = StackSection.objects.all()
+    serializer_class = StackSectionDetailSerializer
 
 
 class StackList(generics.ListCreateAPIView):
+    queryset = Stack.objects.all()
     serializer_class = StackSerializer
 
-    def get_queryset(self):
-        reminder_name = self.kwargs['reminder_name']
-        return Stack.objects.filter(reminder__name=reminder_name)
+class StackDetail(generics.ListCreateAPIView):
+    queryset = Stack.objects.all()
+    serializer_class = StackDetailSerializer
 
 
 class ReminderDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
-
-
-class ReminderList(generics.ListCreateAPIView):
-    serializer_class = ReminderSerializer
-
-    def get_queryset(self):
-        project_name = self.kwargs['project_name']
-        return Reminder.objects.filter(project__name=project_name)

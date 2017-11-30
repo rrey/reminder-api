@@ -20,8 +20,6 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class InventorySerializer(serializers.ModelSerializer):
 
-    groups = GroupSerializer(many=True)
-
     class Meta:
         model = Inventory
-        fields = ('name', 'groups')
+        fields = ('id', )

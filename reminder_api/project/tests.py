@@ -12,17 +12,17 @@ class ProjectTests(APITestCase):
         Test the projects list interface
         """
         url = reverse("projects")
-        data = {'name': 'test project'}
 
+        data = {'name': 'reactive'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Project.objects.count(), 1)
-        self.assertEqual(Project.objects.get().name, 'test project')
+        self.assertEqual(Project.objects.get().name, 'reactive')
+        project_name = response.data['name']
 
+        url += '%s/' % project_name
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0], data)
 
     def test_environment_list(self):
         """
@@ -30,15 +30,14 @@ class ProjectTests(APITestCase):
         """
         # {{{ create a project
         url = reverse("projects")
-        project_data = {'name': 'test_project'}
+        project_data = {'name': 'reactive'}
         response = self.client.post(url, project_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Project.objects.count(), 1)
-        self.assertEqual(Project.objects.get().name, 'test_project')
+        project_id = response.data['id']
         # }}}
 
-        url = "/projects/test_project/environments/"
-        env_data = {'name': 'staging'}
+        url = reverse("environments")
+        env_data = {'name': 'staging', 'project': project_id}
         response = self.client.post(url, env_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         project = Project.objects.get()

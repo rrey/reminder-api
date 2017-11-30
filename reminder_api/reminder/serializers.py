@@ -17,27 +17,47 @@ class HostSerializer(serializers.ModelSerializer):
 
 
 class StackSectionSerializer(serializers.ModelSerializer):
-    hosts = HostSerializer()
-    urls = UrlSerializer()
 
     class Meta:
         model = StackSection
-        fields = ('name', 'hosts', 'urls')
+        fields = ('id', 'name', )
+
+
+class StackSectionDetailSerializer(serializers.ModelSerializer):
+    hosts = HostSerializer(many=True)
+    urls = UrlSerializer(many=True)
+
+    class Meta:
+        model = StackSection
+        fields = ('id', 'name', 'hosts', 'urls')
 
 
 class StackSerializer(serializers.ModelSerializer):
-    #logo = serializers.ImageField(allow_empty_file=True)
-    sections = StackSectionSerializer()
 
     class Meta:
         model = Stack
-        fields = ('name', 'logo', 'sections')
+        fields = ('reminder', 'id', 'name', )
+
+class StackDetailSerializer(serializers.ModelSerializer):
+    #logo = serializers.ImageField(allow_empty_file=True)
+    sections = StackSectionDetailSerializer(many=True)
+
+    class Meta:
+        model = Stack
+        fields = ('id', 'name', 'sections')
 
 
 class ReminderSerializer(serializers.ModelSerializer):
 
-    stacks = StackSerializer()
+    class Meta:
+        model = Reminder
+        fields = ('environment', 'id', )
+
+
+class ReminderSerializer(serializers.ModelSerializer):
+
+    stacks = StackDetailSerializer(many=True)
 
     class Meta:
         model = Reminder
-        fields = ('name', 'stacks',)
+        fields = ('id', 'stacks', )

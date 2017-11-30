@@ -1,29 +1,32 @@
 from project.models import Project, Environment
 from rest_framework import serializers
 
+from reminder.serializers import ReminderSerializer
+from inventory.serializers import InventorySerializer
+
 
 class EnvironmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Environment
-        fields = ('name', )
+        fields = ('project', 'id', 'name', )
 
 
 class EnvironmentDetailSerializer(serializers.ModelSerializer):
 
-#    inventory = InventorySerializer()
-#    reminder = ReminderSerializer()
+    reminder = ReminderSerializer()
+    inventory = InventorySerializer()
 
     class Meta:
         model = Environment
-        fields = ('name', )
+        fields = ('id', 'name', 'reminder', 'inventory', )
 
 
 class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('name', )
+        fields = ('id', 'name', )
 
 class ProjectDetailSerializer(serializers.ModelSerializer):
 
@@ -31,4 +34,4 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('name', 'environments', )
+        fields = ('id', 'name', 'environments', )
