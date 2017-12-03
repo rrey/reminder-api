@@ -9,7 +9,7 @@ class EnvironmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Environment
-        fields = ('project', 'id', 'name', )
+        fields = ('id', 'name', )
 
 
 class EnvironmentDetailSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class EnvironmentDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Environment
-        fields = ('id', 'name', 'reminder', 'inventory', )
+        fields = ('project', 'id', 'name', 'reminder', 'inventory', )
 
 
 class ProjectSerializer(serializers.ModelSerializer):

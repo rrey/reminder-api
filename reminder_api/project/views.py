@@ -33,4 +33,3 @@ class EnvironmentList(generics.ListCreateAPIView):
 class EnvironmentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Environment.objects.all()
     serializer_class = EnvironmentDetailSerializer
-    lookup_field = "name"

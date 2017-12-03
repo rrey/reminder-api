@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^projects/$', p_views.ProjectList.as_view(), name='projects'),
     url(r'^projects/(?P<name>\w+)/$', p_views.ProjectDetail.as_view()),
     url(r'^environments/$', p_views.EnvironmentList.as_view(), name='environments'),
-    url(r'^environments/(?P<name>\w+)/$', p_views.EnvironmentDetail.as_view()),
+    url(r'^environments/(?P<pk>[0-9]+)/$', p_views.EnvironmentDetail.as_view()),
 
     url(r'^reminders/(?P<pk>[0-9]+)/$', r_views.ReminderDetail.as_view()),
     url(r'^stacks/$', r_views.StackList.as_view()),
