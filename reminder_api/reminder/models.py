@@ -25,7 +25,7 @@ class Url(models.Model):
     stack = models.ForeignKey(Stack, related_name='urls')
 
     def __str__(self):
-        return "name: %s" % self.name
+        return "url: %s" % self.url
 
 
 class Host(models.Model):
@@ -33,4 +33,4 @@ class Host(models.Model):
     stack = models.ForeignKey(Stack, related_name='hosts')
 
     def __str__(self):
-        return "name: %s" % self.name
+        return "hostname: %s" % self.hostname

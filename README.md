@@ -34,3 +34,54 @@ $ python manage.py runserver
 ```
 
 Enjoy the interface on 127.0.0.1:8000 (the browsable api too).
+
+# Samples
+
+## Project detail (ex : /projects/awesome/)
+
+Returns a Project JSON representation:
+```
+{
+    "id": 1,
+    "name": "awesome",
+    "environments": [
+        {
+            "id": 1,
+            "name": "staging"
+        }
+    ]
+}
+```
+
+## Environment detail (ex : /environments/1/)
+
+Returns an Environment JSON representation:
+```
+{
+    "project": 1,
+    "id": 1,
+    "name": "staging",
+    "reminder": {
+        "id": 1,
+        "stacks": [
+            {
+                "id": 1,
+                "name": "kafka",
+                "urls": [
+                    {
+                        "url": "http://kafka-01.example.com/"
+                    }
+                ],
+                "hosts": [
+                    {
+                        "hostname": "kafka-01.example.com"
+                    }
+                ]
+            }
+        ]
+    },
+    "inventory": {
+        "id": 1
+    }
+}
+```
