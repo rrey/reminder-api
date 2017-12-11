@@ -29,7 +29,7 @@ class Url(models.Model):
 
 
 class Host(models.Model):
-    hostname = models.CharField(max_length=20)
+    hostname = models.CharField(max_length=50)
     stack = models.ForeignKey(Stack, related_name='hosts')
 
     def __str__(self):
