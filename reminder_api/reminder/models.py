@@ -20,25 +20,17 @@ class Stack(models.Model):
         return "name: %s" % self.name
 
 
-class StackSection(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-    stack = models.ForeignKey(Stack, related_name='sections')
-
-    def __str__(self):
-        return "name: %s" % self.name
-
-
 class Url(models.Model):
-    name = models.URLField()
-    section = models.ForeignKey(StackSection, related_name='urls')
+    url = models.URLField()
+    stack = models.ForeignKey(Stack, related_name='urls')
 
     def __str__(self):
         return "name: %s" % self.name
 
 
 class Host(models.Model):
-    name = models.CharField(max_length=20)
-    section = models.ForeignKey(StackSection, related_name='hosts')
+    hostname = models.CharField(max_length=20)
+    stack = models.ForeignKey(Stack, related_name='hosts')
 
     def __str__(self):
         return "name: %s" % self.name
