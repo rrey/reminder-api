@@ -20,7 +20,7 @@ class StackSectionList(generics.ListCreateAPIView):
     queryset = StackSection.objects.all()
     serializer_class = StackSectionSerializer
 
-class StackSectionDetail(generics.ListCreateAPIView):
+class StackSectionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = StackSection.objects.all()
     serializer_class = StackSectionDetailSerializer
 
@@ -29,7 +29,7 @@ class StackList(generics.ListCreateAPIView):
     queryset = Stack.objects.all()
     serializer_class = StackSerializer
 
-class StackDetail(generics.ListCreateAPIView):
+class StackDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Stack.objects.all()
     serializer_class = StackDetailSerializer
 
