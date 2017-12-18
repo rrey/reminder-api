@@ -2,6 +2,3 @@ Django==1.11
 djangorestframework==3.6.3
 Pillow==4.3.0
 django-cors-headers==2.1.0
-
-# for dev only
-ipython==5.5.0

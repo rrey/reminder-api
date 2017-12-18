@@ -1,0 +1,2 @@
+ipython==5.5.0
+docker-py==1.10.6
