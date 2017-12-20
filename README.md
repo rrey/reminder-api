@@ -22,18 +22,37 @@ in the environments.
 * ansible-module-reminder: An ansible module allowing to interact with reminder-api from
 Ansible to populate the database while building an environment.
 
-# Start the server
+# Quick start
+
+## Using Docker
 
 ```
-$ cd reminder_api
-$ python manage.py makemigrations project
-$ python manage.py makemigrations reminder
-$ python manage.py makemigrations inventory
-$ python manage.py migrate
-$ python manage.py runserver
+$ docker pull rrey/reminder_api
+$ docker run -it --rm -p 8000:8000 -d reminder_api
+```
+
+## From the sources
+
+### Development server
+
+```
+$ make init
+$ make run
 ```
 
 Enjoy the interface on 127.0.0.1:8000 (the browsable api too).
+
+### Docker
+
+You can edit the Dockerfile and build your own image:
+
+```
+$ make dockerbuild
+$ make dockerrun
+```
+
+The first command will build a Docker image based on the Docker file, the
+second will start a container based on this image.
 
 # Samples
 
