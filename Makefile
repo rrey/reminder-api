@@ -19,3 +19,6 @@ dockerbuild:
 
 dockerrun:
 	docker run -it --rm -p 8000:8000 -d reminder_api
+
+check:
+	$(DJANGO_MANAGE) test
