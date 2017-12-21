@@ -27,9 +27,7 @@ class EnvironmentList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         project_id = self.request.data.get('project')
         project = Project.objects.get(id=project_id)
-        reminder = Reminder.objects.create()
-        inventory = Inventory.objects.create()
-        serializer.save(project=project, reminder=reminder, inventory=inventory)
+        serializer.save(project=project)
 
 
 class EnvironmentDetail(generics.RetrieveUpdateDestroyAPIView):
