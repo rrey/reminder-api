@@ -23,7 +23,7 @@ class StackDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Stack
-        fields = ('id', 'name', 'urls', 'hosts', )
+        fields = ('id', 'name', 'urls', 'hosts', 'logo')
 
     def create(self, validated_data):
         hosts_data = validated_data.pop('hosts')
@@ -37,6 +37,7 @@ class StackDetailSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
+        instance.logo = validated_data.get('logo', instance.logo)
         # {{{ delete existing hosts and urls
         for url in instance.urls.all():
             url.delete()

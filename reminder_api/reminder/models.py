@@ -10,7 +10,7 @@ class Reminder(models.Model):
 
 class Stack(models.Model):
     name = models.CharField(max_length=20, unique=True)
-    logo = models.ImageField()
+    logo = models.CharField(max_length=30)
     reminder = models.ForeignKey(Reminder, related_name='stacks')
 
     class Meta:
