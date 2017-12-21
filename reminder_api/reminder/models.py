@@ -11,6 +11,7 @@ class Reminder(models.Model):
 class Stack(models.Model):
     name = models.CharField(max_length=20, unique=True)
     logo = models.CharField(max_length=30)
+    category = models.CharField(max_length=30, default='main')
     reminder = models.ForeignKey(Reminder, related_name='stacks')
 
     class Meta:
