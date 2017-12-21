@@ -11,6 +11,9 @@ init:
 remove_memdb:
 	rm reminder_api/db.sqlite3
 
+clean_migrations:
+	rm -fr reminder_api/{project,reminder,inventory}/migrations
+
 run:
 	cd reminder_api && python manage.py runserver
 
