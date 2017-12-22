@@ -22,13 +22,16 @@ from reminder import views as r_views
 
 urlpatterns = [
     url(r'^projects/$', p_views.ProjectList.as_view(), name='projects'),
-    url(r'^projects/(?P<name>\w+)/$', p_views.ProjectDetail.as_view()),
+    url(r'^projects/(?P<name>\w+)/$', p_views.ProjectDetail.as_view(),
+        name='project_details'),
     url(r'^environments/$', p_views.EnvironmentList.as_view(), name='environments'),
-    url(r'^environments/(?P<pk>[0-9]+)/$', p_views.EnvironmentDetail.as_view()),
+    url(r'^environments/(?P<pk>[0-9]+)/$',
+        p_views.EnvironmentDetail.as_view(), name='environment_details'),
 
     url(r'^reminders/(?P<pk>[0-9]+)/$', r_views.ReminderDetail.as_view()),
-    url(r'^stacks/$', r_views.StackList.as_view()),
-    url(r'^stacks/(?P<pk>[0-9]+)/$', r_views.StackDetail.as_view()),
+    url(r'^stacks/$', r_views.StackList.as_view(), name='stacks'),
+    url(r'^stacks/(?P<pk>[0-9]+)/$', r_views.StackDetail.as_view(),
+        name='stack_details'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
