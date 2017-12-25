@@ -38,6 +38,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
+    'health.apps.HealthConfig',
     'inventory.apps.InventoryConfig',
     'reminder.apps.ReminderConfig',
     'project.apps.ProjectConfig',

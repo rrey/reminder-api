@@ -19,6 +19,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from project import views as p_views
 from reminder import views as r_views
+from health import views as h_views
 
 urlpatterns = [
     url(r'^projects/$', p_views.ProjectList.as_view(), name='projects'),
@@ -32,6 +33,8 @@ urlpatterns = [
     url(r'^stacks/$', r_views.StackList.as_view(), name='stacks'),
     url(r'^stacks/(?P<pk>[0-9]+)/$', r_views.StackDetail.as_view(),
         name='stack_details'),
+    url(r'^health/$', h_views.HealthCheck.as_view(),
+        name='healthcheck'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
