@@ -48,6 +48,18 @@ class ProjectTests(APITestCase):
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]['name'], project_name)
 
+    def test_projects_delete(self):
+        """
+        Test the projects delete interface
+        """
+        project_name = "reactive"
+        project = Project.objects.create(name=project_name)
+        url = '/projects/%s/' % project_name
+
+        response = self.client.delete(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+
     def test_environement_create(self):
         """
         Test the environment create interface
@@ -93,3 +105,15 @@ class ProjectTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]['name'], env_name)
+
+    def test_environments_delete(self):
+        """
+        Test the environments delete interface
+        """
+        project_name = "reactive"
+        env_name = "staging"
+        project = Project.objects.create(name=project_name)
+        env = project.environments.create(name=env_name)
+        url = '/environments/%d/' % env.id
+
+        response = self.client.delete(url, format='json')
