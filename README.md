@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rrey/reminder-api.svg?branch=master)](https://travis-ci.org/rrey/reminder-api)
+
 # What is the Reminder API ?
 
 Let's say you an OPS, you deliver projects and:
